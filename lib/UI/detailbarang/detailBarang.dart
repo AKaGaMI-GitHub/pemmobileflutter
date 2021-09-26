@@ -18,11 +18,30 @@ class _DetailBarangPageState extends State<DetailBarangPage> {
         backgroundColor: Colors.green.shade600,
         title: Text("Detail Product"),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Text("Belum Fix"),
-        ),
-      ),
+      body: ListView(children: [
+        Container(
+          child: Column(
+            children: [
+              Container(
+                width: 500,
+                height: 300,
+                child: Image(image: AssetImage(widget.barang.foto)),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                width: 500,
+                height: 60,
+                decoration: BoxDecoration(color: Colors.black12),
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  widget.barang.namaBarang,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              )
+            ],
+          ),
+        )
+      ]),
 
       //navbar
       bottomNavigationBar: BottomNavigationBar(

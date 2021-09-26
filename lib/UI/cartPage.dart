@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:latihan/UI/cartPage.dart';
 import 'package:latihan/UI/homePage.dart';
+import 'package:latihan/UI/search.dart';
 
-class SearchPage extends StatefulWidget {
+class CartPage extends StatefulWidget {
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _CartPageState createState() => _CartPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //appbar kepala
       appBar: AppBar(
         backgroundColor: Colors.green.shade600,
-        title: Text("Search"),
+        title: Text("Your Cart"),
       ),
+
       //navbar
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, //index 0 = homepage, 1 = search, 2 = cart
+        currentIndex: 2, //index 0 = homepage, 1 = search, 2 = cart
         onTap: (i) {
           switch (i) {
             case 0:
