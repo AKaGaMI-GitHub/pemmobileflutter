@@ -3,6 +3,7 @@ import 'package:latihan/Model/barang.dart';
 import 'package:latihan/Services/apiStatic.dart';
 import 'package:latihan/UI/cartPage.dart';
 import 'package:latihan/UI/detailbarang/detailBarang.dart';
+import 'package:latihan/UI/inputbarangPage.dart';
 import 'package:latihan/UI/search.dart';
 
 class HomePage extends StatefulWidget {
@@ -84,7 +85,8 @@ class _HomePageState extends State<HomePage> {
               break;
             case 2:
               Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                  builder: (BuildContext context) => CartPage()));
+                  builder: (BuildContext context) => InputbarangPage()));
+              break;
           }
         },
         items: const <BottomNavigationBarItem>[
@@ -99,8 +101,8 @@ class _HomePageState extends State<HomePage> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Carts',
+            icon: Icon(Icons.add_box),
+            label: 'Product',
           ),
         ],
       ),

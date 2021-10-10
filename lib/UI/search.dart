@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latihan/UI/cartPage.dart';
 import 'package:latihan/UI/homePage.dart';
+import 'package:latihan/UI/inputbarangPage.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
               break;
             case 2:
               Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                  builder: (BuildContext context) => CartPage()));
+                  builder: (BuildContext context) => InputbarangPage()));
           }
         },
         items: const <BottomNavigationBarItem>[
@@ -46,8 +47,8 @@ class _SearchPageState extends State<SearchPage> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Carts',
+            icon: Icon(Icons.add_box),
+            label: 'Product',
           ),
         ],
       ),
