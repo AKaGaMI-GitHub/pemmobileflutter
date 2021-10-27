@@ -4,6 +4,7 @@ import 'package:latihan/Services/apiStatic.dart';
 import 'package:latihan/UI/cartPage.dart';
 import 'package:latihan/UI/detailbarang/detailBarang.dart';
 import 'package:latihan/UI/inputbarangPage.dart';
+import 'package:latihan/UI/listbarangPage.dart';
 import 'package:latihan/UI/search.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,11 +50,11 @@ class _HomePageState extends State<HomePage> {
                               width: 2, color: Colors.green.shade600)),
                       child: (Row(
                         children: [
-                          Container(
-                              width: 60,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(barangs[index].foto)))),
+                          //Container(
+                          //width: 60,
+                          //decoration: BoxDecoration(
+                          //image: DecorationImage(
+                          //image: AssetImage(barangs[index].foto)))),
                           Text(
                             barangs[index].namaBarang,
                             style: TextStyle(
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
               break;
             case 2:
               Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                  builder: (BuildContext context) => InputbarangPage()));
+                  builder: (BuildContext context) => ListbarangPage()));
               break;
           }
         },

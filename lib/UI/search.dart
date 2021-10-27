@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:latihan/UI/cartPage.dart';
 import 'package:latihan/UI/homePage.dart';
 import 'package:latihan/UI/inputbarangPage.dart';
+import 'package:latihan/UI/listbarangPage.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
               break;
             case 2:
               Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                  builder: (BuildContext context) => InputbarangPage()));
+                  builder: (BuildContext context) => ListbarangPage()));
           }
         },
         items: const <BottomNavigationBarItem>[
