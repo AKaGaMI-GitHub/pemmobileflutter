@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihan/Model/barang.dart';
+import 'package:latihan/Model/errMsg.dart';
 import 'package:latihan/Services/apiStatic.dart';
 import 'package:latihan/UI/homePage.dart';
 import 'package:latihan/UI/inputbarangPage.dart';
@@ -13,6 +14,15 @@ class ListbarangPage extends StatefulWidget {
 class _ListbarangPageState extends State<ListbarangPage> {
   //final Barang barang;
   //InputbarangPage({required this.barang});
+  late ErrorMSG response;
+  void deleteBarang(idBarang) async {
+    response = await ApiStatic.deleteBarang(idBarang);
+    final snackBar = SnackBar(
+      content: Text(response.message),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +92,12 @@ class _ListbarangPageState extends State<ListbarangPage> {
                                                         )));
                                           },
                                           child: Icon(Icons.edit)),
-                                      Icon(Icons.delete)
+                                      GestureDetector(
+                                          onTap: () {
+                                            deleteBarang(
+                                                barangs[index].idBarang);
+                                          },
+                                          child: Icon(Icons.delete))
                                     ],
                                   )
                                 ],

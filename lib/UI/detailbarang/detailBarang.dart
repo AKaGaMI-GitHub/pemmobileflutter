@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:latihan/Model/barang.dart';
-import 'package:latihan/UI/homePage.dart';
-import 'package:latihan/UI/search.dart';
 
 class DetailBarangPage extends StatefulWidget {
   DetailBarangPage({required this.barang});
@@ -22,11 +20,11 @@ class _DetailBarangPageState extends State<DetailBarangPage> {
         Container(
           child: Column(
             children: [
-              Container(
-                width: 500,
-                height: 300,
-                child: Image(image: AssetImage(widget.barang.foto)),
-              ),
+              // Container(
+              //   width: 500,
+              //   height: 300,
+              //   child: Image(image: AssetImage(widget.barang.foto)),
+              // ),
               Container(
                 alignment: Alignment.centerLeft,
                 width: 500,

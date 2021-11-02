@@ -3,7 +3,6 @@ import 'package:latihan/Model/barang.dart';
 import 'package:latihan/Services/apiStatic.dart';
 import 'package:latihan/UI/cartPage.dart';
 import 'package:latihan/UI/detailbarang/detailBarang.dart';
-import 'package:latihan/UI/inputbarangPage.dart';
 import 'package:latihan/UI/listbarangPage.dart';
 import 'package:latihan/UI/search.dart';
 

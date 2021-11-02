@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latihan/UI/cartPage.dart';
 import 'package:latihan/UI/homePage.dart';
-import 'package:latihan/UI/inputbarangPage.dart';
 import 'package:latihan/UI/listbarangPage.dart';
 
 class SearchPage extends StatefulWidget {
