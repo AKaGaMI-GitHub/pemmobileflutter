@@ -31,6 +31,26 @@ class ApiStatic {
     }
   }
 
+  static Future<List<Barang>> getBarangFilter(
+      int pageKey, String _s, String _selectedChoice) async {
+    try {
+      final response = await http.get(
+          Uri.parse('http://192.168.18.120/APIMobile/public/api/databarang'),
+          headers: {
+            'Authorization': 'Bearer ' + _token,
+          });
+      if (response.statusCode == 200) {
+        var json = jsonDecode(response.body);
+        final parsed = json['data'].cast<Map<String, dynamic>>();
+        return parsed.map<Barang>((json) => Barang.fromJson(json)).toList();
+      } else {
+        return [];
+      }
+    } catch (e) {
+      return [];
+    }
+  }
+
   static Future<List<Penjual>> getNamaPenjual() async {
     try {
       final response = await http.get(
