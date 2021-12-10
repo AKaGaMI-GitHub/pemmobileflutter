@@ -6,7 +6,7 @@ import 'package:latihan/Model/penjual.dart';
 
 class ApiStatic {
   static final host = 'http://192.168.18.120/APIMobile/';
-  static final _token = "8|GyQkvwniRTzJJnHjDYvYKmTNTWkoMPjLsqDtNBBD";
+  static final _token = "9|OfQ4EaQMWcl7OTyKb5T1FJ6jqgviKE1YZxYms15P";
   static getHost() {
     return host;
   }
@@ -35,7 +35,14 @@ class ApiStatic {
       int pageKey, String _s, String _selectedChoice) async {
     try {
       final response = await http.get(
-          Uri.parse('http://192.168.18.120/APIMobile/public/api/databarang'),
+          //Uri.parse("http://192.168.18.120/APIMobile/public/api/databarang?page=1&s=ped&publish=Y"),
+          Uri.parse(
+              "http://192.168.18.120/APIMobile/public/api/databarang?page=" +
+                  pageKey.toString() +
+                  "&s=" +
+                  _s +
+                  "&publish=" +
+                  _selectedChoice),
           headers: {
             'Authorization': 'Bearer ' + _token,
           });
@@ -54,7 +61,7 @@ class ApiStatic {
   static Future<List<Penjual>> getNamaPenjual() async {
     try {
       final response = await http.get(
-          Uri.parse('http://192.168.18.120/APIMobile/public/api/datapenjual'),
+          Uri.parse('http://192.168.18.120/APIMobile/api/datapenjual'),
           headers: {
             'Authorization': 'Bearer ' + _token,
           });
