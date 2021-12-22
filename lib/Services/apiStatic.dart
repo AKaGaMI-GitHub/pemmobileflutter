@@ -3,10 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:latihan/Model/barang.dart';
 import 'package:latihan/Model/errMsg.dart';
 import 'package:latihan/Model/penjual.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiStatic {
   static final host = 'http://192.168.18.120/APIMobile/';
-  static final _token = "9|OfQ4EaQMWcl7OTyKb5T1FJ6jqgviKE1YZxYms15P";
+  static final _token = "10|t7J7onSeKAAnAHGurec9im4jejVVoNskZO7vlAIU";
   static getHost() {
     return host;
   }
@@ -20,8 +21,7 @@ class ApiStatic {
           });
       if (response.statusCode == 200) {
         var json = jsonDecode(response.body);
-        print(json);
-        final parsed = json['data'].cast<Map<String, dynamic>>();
+        final parsed = json['data']['data'].cast<Map<String, dynamic>>();
         return parsed.map<Barang>((json) => Barang.fromJson(json)).toList();
       } else {
         return [];
@@ -35,7 +35,8 @@ class ApiStatic {
       int pageKey, String _s, String _selectedChoice) async {
     try {
       final response = await http.get(
-          //Uri.parse("http://192.168.18.120/APIMobile/public/api/databarang?page=1&s=ped&publish=Y"),
+          // Uri.parse(
+          //     "http://192.168.18.120/APIMobile/public/api/databarang?page=1&s=&publish=Y"),
           Uri.parse(
               "http://192.168.18.120/APIMobile/public/api/databarang?page=" +
                   pageKey.toString() +
@@ -48,7 +49,8 @@ class ApiStatic {
           });
       if (response.statusCode == 200) {
         var json = jsonDecode(response.body);
-        final parsed = json['data'].cast<Map<String, dynamic>>();
+        print(json["data"]['data']);
+        final parsed = json['data']['data'].cast<Map<String, dynamic>>();
         return parsed.map<Barang>((json) => Barang.fromJson(json)).toList();
       } else {
         return [];
@@ -61,7 +63,7 @@ class ApiStatic {
   static Future<List<Penjual>> getNamaPenjual() async {
     try {
       final response = await http.get(
-          Uri.parse('http://192.168.18.120/APIMobile/api/datapenjual'),
+          Uri.parse('http://192.168.18.120/APIMobile/public/api/datapenjual'),
           headers: {
             'Authorization': 'Bearer ' + _token,
           });
@@ -80,10 +82,12 @@ class ApiStatic {
 
   static Future<ErrorMSG> saveBarang(idBarang, barangs, filepath) async {
     try {
-      var url = Uri.parse('http://192.168.18.120/APIMobile/api/databarang');
+      var url =
+          Uri.parse('http://192.168.18.120/APIMobile/public/api/databarang');
       if (idBarang != 0) {
-        url = Uri.parse('http://192.168.18.120/APIMobile/api/databarang' +
-            idBarang.toString());
+        url = Uri.parse(
+            'http://192.168.18.120/APIMobile/public/api/databarang' +
+                idBarang.toString());
       }
 
       var request = http.MultipartRequest('POST', url);
@@ -115,8 +119,8 @@ class ApiStatic {
   static Future<ErrorMSG> deleteBarang(idBarang) async {
     try {
       final response = await http.delete(
-          Uri.parse(
-              'http://192.168.18.120/APIMobile/api/' + idBarang.toString()),
+          Uri.parse('http://192.168.18.120/APIMobile/public/api/' +
+              idBarang.toString()),
           headers: {
             'Authorization': 'Bearer ' + _token,
           });
@@ -128,6 +132,30 @@ class ApiStatic {
     } catch (e) {
       ErrorMSG responseRequest =
           ErrorMSG(success: false, message: 'Error caught : $e');
+      return responseRequest;
+    }
+  }
+
+  static Future<ErrorMSG> signIn(_post) async {
+    try {
+      final response = await http.post(
+          Uri.parse('http://192.168.18.120/APIMobile/public/api/login'),
+          body: _post);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        var res = jsonDecode(response.body);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('token', res['content']['access_token']);
+        print(res);
+        prefs.setInt('level', 1);
+        return ErrorMSG.fromJson(res);
+      } else {
+        print(response.statusCode);
+        return ErrorMSG.fromJson(jsonDecode(response.body));
+      }
+    } catch (e) {
+      ErrorMSG responseRequest =
+          ErrorMSG(success: false, message: 'error caught: $e');
       return responseRequest;
     }
   }

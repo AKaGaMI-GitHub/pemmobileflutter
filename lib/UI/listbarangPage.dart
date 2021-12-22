@@ -22,7 +22,7 @@ class _ListbarangPageState extends State<ListbarangPage> {
   late TextEditingController _s;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   late String _publish = "Y";
-  int _pageSize = 3;
+  int _pageSize = 2;
   void deleteBarang(idBarang) async {
     response = await ApiStatic.deleteBarang(idBarang);
     final snackBar = SnackBar(
